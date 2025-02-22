@@ -11,7 +11,11 @@
   loop:
   - nodejs
   - mysql
-  - PyMySQL
+- name: installing python depencdy
+  ansible.builtin.pip:
+    name: PyMySQL
+    executable: pip3.9
+  
 
 - name: adding expense user
   ansible.builtin.user:
