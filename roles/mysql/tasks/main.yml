@@ -1,0 +1,25 @@
+- name: install mysql-server
+  ansible.builtin.pacakge:
+    name: mysql-server
+    state: present
+- name: start mysql
+  ansible.builtin.service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: connect to mysql
+  community.mysql.mysql_info:
+    login_user: "{{MYSQL_USER}}"
+    login_password: "{{MYSQL_PASSWORD}}"
+    login_host: "{{MYSQL_HOST}}"
+  register: mysql_info
+  ignore_errors: true
+
+- name: print the output
+  ansible.builtin.debug:
+    msg: "{{mysql_info}}"
+
+- name: set up the password
+  ansile.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
+  when: mysql_info.failed is true
