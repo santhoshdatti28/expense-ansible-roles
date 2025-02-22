@@ -20,6 +20,7 @@
   ansible.builtin.unarchive:
     src: /tmp/frontend.zip
     dest: /usr/share/nginx/html
+    remote_src: true
 
 - name: coping the file
   ansible.builtin.template:
