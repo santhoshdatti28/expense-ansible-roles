@@ -7,6 +7,10 @@
     name: mysqld
     state: started
     enabled: yes
+- name: install dependency
+  ansible.builtin.package:
+    name: PyMySQL
+    executable: pip3.9
 
 - name: connect to mysql
   community.mysql.mysql_info:
