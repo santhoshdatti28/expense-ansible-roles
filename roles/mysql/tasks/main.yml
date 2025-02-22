@@ -1,5 +1,5 @@
 - name: install mysql-server
-  ansible.builtin.pacakge:
+  ansible.builtin.package:
     name: mysql-server
     state: present
 - name: start mysql
