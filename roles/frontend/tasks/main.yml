@@ -7,8 +7,12 @@
     name: nginx
     state: started
     enabled: yes
-- name: deleting files
-  ansible.builtin.command: rm -rf /usr/share/nginx/html/*
+- name: include from common
+  include_role:
+    name: common
+    task_from: main
+# - name: deleting files
+#   ansible.builtin.command: rm -rf /usr/share/nginx/html/*
 
 # - name: delete html directory
 #   ansible.builtin.file:
@@ -20,16 +24,16 @@
 #     path: /usr/share/nginx/html
 #     state: directory
 
-- name: downaloding the code
-  ansible.builtin.get_url:
-    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-    dest: /tmp/frontend.zip
+# - name: downaloding the code
+#   ansible.builtin.get_url:
+#     url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+#     dest: /tmp/frontend.zip
 
-- name: unzip the code
-  ansible.builtin.unarchive:
-    src: /tmp/frontend.zip
-    dest: /usr/share/nginx/html
-    remote_src: true
+# - name: unzip the code
+#   ansible.builtin.unarchive:
+#     src: /tmp/frontend.zip
+#     dest: /usr/share/nginx/html
+#     remote_src: true
 
 - name: coping the file
   ansible.builtin.template:
