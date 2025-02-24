@@ -10,7 +10,7 @@
 - name: include from common
   include_role:
     name: common
-    task_from: main
+    tasks_from: main
 # - name: deleting files
 #   ansible.builtin.command: rm -rf /usr/share/nginx/html/*
 
